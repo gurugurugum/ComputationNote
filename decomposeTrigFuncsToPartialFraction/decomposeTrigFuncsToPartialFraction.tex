@@ -1,0 +1,94 @@
+\documentclass[10pt,onecolumn,dvipdfmx]{jsarticle}
+\usepackage{amsmath,amssymb,float,braket,bm,moreverb,mediabb,hyperref}
+\usepackage[dvips]{pict2e}
+
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\diag}{diag}
+
+\DeclareSymbolFont{lettersA}{U}{txmia}{m}{it}
+\DeclareMathSymbol{\F}{\mathord}{lettersA}{'206}
+\DeclareMathSymbol{\N}{\mathord}{lettersA}{'216} 
+\DeclareMathSymbol{\R}{\mathord}{lettersA}{'222} 
+\DeclareMathSymbol{\Z}{\mathord}{lettersA}{'232} 
+\DeclareMathSymbol{\Q}{\mathord}{lettersA}{'221} 
+\DeclareMathSymbol{\C}{\mathord}{lettersA}{'203} 
+
+\newcommand{\divergence}{\mathrm{div}\,} 
+\newcommand{\grad}{\mathrm{grad}\,} 
+\newcommand{\rot}{\mathrm{rot}\,} 
+
+\def\sla#1{\rlap{\kern .15em /}#1}
+
+\newcommand{\diff}[3]{\frac{\mathrm{d} ^{#1} #2}{\mathrm{d} #3^{#1}} }
+\newcommand{\pdiff}[3]{\frac{\partial ^{#1} #2}{\partial #3^{#1}} }
+
+\renewcommand{\thesubsection}{\arabic{subsection})}
+
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\makeatletter
+\@addtoreset{equation}{subsection}
+\makeatother
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}%
+  {1.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+  {.5\Cvs \@plus.3\Cdp}%
+  {\reset@font\normalsize\bfseries}}
+\makeatother
+
+\begin{document}
+
+\title{三角関数の部分分数展開}
+\author{岡 和磨}
+\date{2016/12/31}
+\maketitle
+
+\section{公式}
+\begin{align}
+\pi \cot{\left( \pi z\right) } &= \sum_{n=-\infty } ^{\infty } \frac{1}{z + n} \\
+\pi \tan{\left( \pi z\right) } &= -\sum_{n=-\infty } ^{\infty } \frac{1}{z + n + 1/2} \\
+\frac{\pi }{\sin{\left( \pi z\right) } } &= \sum_{n=-\infty } ^{\infty } \frac{\left( -1\right) ^{n} }{z + n} \\
+\frac{\pi }{\cos{\left( \pi z\right) } } &= \sum_{n=-\infty } ^{\infty } \frac{\left( -1\right) ^{n} }{z + n + 1 / 2} 
+\end{align}
+
+\section{証明}
+\begin{align}
+f\left( z\right) = \pi \cot{\left( \pi z\right) } -\sum_{n=-\infty } ^{\infty } \frac{1}{z + n} 
+\end{align}
+とおく。$f\left( z\right) $は$\C$上有界な整関数だから、リウヴィルの定理により定数関数であることがわかる。したがって、
+\begin{align}
+f\left( z\right) &= f\left( 0\right) = 0\notag \\
+\therefore \pi \cot{\left( \pi z\right) } &= \sum_{n=-\infty } ^{\infty } \frac{1}{z + n} 。
+\end{align}
+また、$z=z' + 1/2$とすると、
+\begin{align}
+\pi \cot{\left( \pi z\right) } &= \pi \cot{\left( \pi z' + \frac{\pi}{2} \right) } \notag \\
+&= -\pi \tan{\pi z'}
+\end{align}
+だから、
+\begin{align}
+\pi \tan{\left( \pi z\right) } = -\sum_{n=-\infty } ^{\infty } \frac{1}{z + n + 1/2} 。
+\end{align}
+さらに、
+\begin{align}
+\pi \cot{\left( \pi z\right) } + \pi \tan{\left( \pi z\right) } = \frac{2\pi }{\sin{\left( 2\pi z\right) } } 
+\end{align}
+より、
+\begin{align}
+\frac{\pi }{\sin{\left( \pi z\right) } } &= \frac{1}{2} \left( \sum_{n=-\infty } ^{\infty } \frac{1}{z / 2 + n} -\sum_{n=-\infty } ^{\infty } \frac{1}{z / 2 + n + 1/2} \right) \notag \\
+\therefore \frac{\pi }{\sin{\left( \pi z\right) } } &= \sum_{n=-\infty } ^{\infty } \frac{\left( -1\right) ^{n} }{z + n} 、\\
+\therefore \frac{\pi }{\cos{\left( \pi z\right) } } &= \sum_{n=-\infty } ^{\infty } \frac{\left( -1\right) ^{n} }{z + n + 1 / 2} 。
+\end{align}
+まとめると、
+\begin{align}
+\pi \cot{\left( \pi z\right) } &= \sum_{n=-\infty } ^{\infty } \frac{1}{z + n} \\
+\pi \tan{\left( \pi z\right) } &= -\sum_{n=-\infty } ^{\infty } \frac{1}{z + n + 1/2} \\
+\frac{\pi }{\sin{\left( \pi z\right) } } &= \sum_{n=-\infty } ^{\infty } \frac{\left( -1\right) ^{n} }{z + n} \\
+\frac{\pi }{\cos{\left( \pi z\right) } } &= \sum_{n=-\infty } ^{\infty } \frac{\left( -1\right) ^{n} }{z + n + 1 / 2} 
+\end{align}
+
+\begin{thebibliography}{9}
+\bibitem{wikiDecTrigFuncs} Wikipedia 三角関数の部分分数展開 (\href{https://ja.wikipedia.org/wiki/%e4%b8%89%e8%a7%92%e9%96%a2%e6%95%b0%e3%81%ae%e9%83%a8%e5%88%86%e5%88%86%e6%95%b0%e5%b1%95%e9%96%8b}{https://ja.wikipedia.org/wiki/三角関数の部分分数展開}) アクセス日時:2016年12月31日11時50分
+\end{thebibliography}
+
+\end{document}

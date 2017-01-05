@@ -1,0 +1,58 @@
+\documentclass[10pt,onecolumn,dvipdfmx]{jsarticle}
+\usepackage{amsmath,amssymb,float,braket,bm,moreverb,mediabb,hyperref}
+\usepackage[dvips]{pict2e}
+
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\diag}{diag}
+
+\DeclareSymbolFont{lettersA}{U}{txmia}{m}{it}
+\DeclareMathSymbol{\F}{\mathord}{lettersA}{'206}
+\DeclareMathSymbol{\N}{\mathord}{lettersA}{'216} 
+\DeclareMathSymbol{\R}{\mathord}{lettersA}{'222} 
+\DeclareMathSymbol{\Z}{\mathord}{lettersA}{'232} 
+\DeclareMathSymbol{\Q}{\mathord}{lettersA}{'221} 
+\DeclareMathSymbol{\C}{\mathord}{lettersA}{'203} 
+
+\newcommand{\divergence}{\mathrm{div}\,} 
+\newcommand{\grad}{\mathrm{grad}\,} 
+\newcommand{\rot}{\mathrm{rot}\,} 
+
+\def\sla#1{\rlap{\kern .15em /}#1}
+
+\newcommand{\diff}[3]{\frac{\mathrm{d} ^{#1} #2}{\mathrm{d} #3^{#1}} }
+\newcommand{\pdiff}[3]{\frac{\partial ^{#1} #2}{\partial #3^{#1}} }
+
+\renewcommand{\thesubsection}{\arabic{subsection})}
+
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\makeatletter
+\@addtoreset{equation}{subsection}
+\makeatother
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}%
+  {1.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+  {.5\Cvs \@plus.3\Cdp}%
+  {\reset@font\normalsize\bfseries}}
+\makeatother
+
+\begin{document}
+
+\title{}
+\author{Kazuma Oka}
+\date{}
+\maketitle
+
+\section{Schwarzschild black hole}
+Firstly, we consider a metric
+\begin{align}
+\mathrm{d} s^2 &=-\left( 1-\frac{2GM}{r} \right) \mathrm{d} u\mathrm{d} v+r^2 \mathrm{d} \theta ^2 +r^2 \sin^2 {\theta } \mathrm{d} \phi ^2 \\
+u=&t-r^*, v=t+r^*, r^*=r+2GM\ln{\left( \frac{r}{2GM} -1\right) }
+\end{align}
+
+
+\begin{thebibliography}{9}
+\bibitem{gravAndEnt} 福間 将文, 酒谷雄峰, 『重力とエントロピー 〜 重力の熱力学的性質を理解するために 〜』（SGCライブラリ90）, サイエンス社 (2014).
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,124 @@
+\documentclass[10pt,onecolumn,dvipdfmx]{article}
+\usepackage{amsmath,amssymb,float,braket,bm,moreverb,mediabb,hyperref}
+\usepackage[dvips]{pict2e}
+
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\diag}{diag}
+
+\DeclareSymbolFont{lettersA}{U}{txmia}{m}{it}
+\DeclareMathSymbol{\F}{\mathord}{lettersA}{'206}
+\DeclareMathSymbol{\N}{\mathord}{lettersA}{'216} 
+\DeclareMathSymbol{\R}{\mathord}{lettersA}{'222} 
+\DeclareMathSymbol{\Z}{\mathord}{lettersA}{'232} 
+\DeclareMathSymbol{\Q}{\mathord}{lettersA}{'221} 
+\DeclareMathSymbol{\C}{\mathord}{lettersA}{'203} 
+
+\newcommand{\divergence}{\mathrm{div}\,} 
+\newcommand{\grad}{\mathrm{grad}\,} 
+\newcommand{\rot}{\mathrm{rot}\,} 
+
+\def\sla#1{\rlap{\kern .15em /}#1}
+
+\newcommand{\diff}[3]{\frac{\mathrm{d} ^{#1} #2}{\mathrm{d} #3^{#1}} }
+\newcommand{\pdiff}[3]{\frac{\partial ^{#1} #2}{\partial #3^{#1}} }
+
+\renewcommand{\thesubsection}{\arabic{subsection})}
+
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\makeatletter
+\@addtoreset{equation}{subsection}
+\makeatother
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}%
+  {1.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+  {.5\Cvs \@plus.3\Cdp}%
+  {\reset@font\normalsize\bfseries}}
+\makeatother
+
+\begin{document}
+
+\title{}
+\author{Kazuma Oka}
+\date{}
+\maketitle
+
+\section{Schwarzschild black hole}
+Here we consider a metric
+\begin{align}
+\mathrm{d} s^2 &=-\left( 1-\frac{2GM}{r} \right) \mathrm{d} t^2 +\left( 1-\frac{2GM}{r} \right) ^{-1} \mathrm{d} r^2 +r^2 \mathrm{d} \theta ^2 +r^2 \sin^2 {\theta } \mathrm{d} \phi ^2 , \label{eq:SchwarzschildMetcic}
+\end{align}
+and see this metric satisfies the vacuum Einstein equation
+\begin{align}
+R_{\mu \nu } -\frac{1}{2} Rg_{\mu \nu } =0.\label{eq:vEe}
+\end{align}
+Since the Ricci tensor of this metric is 
+\begin{align}
+R_{\mu \nu } &=
+\left(
+\begin{matrix}
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0
+\end{matrix}
+\right),
+\end{align}
+this metric trivially satisfies the equation (\ref{eq:vEe}).
+
+(Incidentally, the Riemann tensor of this metric is 
+\begin{align}
+R_{00\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right], \\
+R_{01\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & \frac{2 G}{x_{1}^{4}} M \left(2 G M - x_{1}\right) & 0 & 0\\\frac{2 G M}{x_{1}^{2} \left(2 G M - x_{1}\right)} & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right], \\
+R_{02\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & \frac{G M}{x_{1}^{4}} \left(- 2 G M + x_{1}\right) & 0\\0 & 0 & 0 & 0\\\frac{G M}{x_{1}} & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right], \\
+R_{03\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & 0 & \frac{G M}{x_{1}^{4}} \left(- 2 G M + x_{1}\right)\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\\\frac{G M}{x_{1}} \sin^{2}{\left (x_{2} \right )} & 0 & 0 & 0\end{matrix}\right], 
+\end{align}
+\begin{align}
+R_{10\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & \frac{2 G}{x_{1}^{4}} M \left(- 2 G M + x_{1}\right) & 0 & 0\\\frac{2 G M}{x_{1}^{2} \left(- 2 G M + x_{1}\right)} & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right], \\
+R_{11\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right], \\
+R_{12\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & 0 & 0\\0 & 0 & \frac{G M}{x_{1}^{2} \left(2 G M - x_{1}\right)} & 0\\0 & \frac{G M}{x_{1}} & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right], \\
+R_{13\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & 0 & 0\\0 & 0 & 0 & \frac{G M}{x_{1}^{2} \left(2 G M - x_{1}\right)}\\0 & 0 & 0 & 0\\0 & \frac{G M}{x_{1}} \sin^{2}{\left (x_{2} \right )} & 0 & 0\end{matrix}\right], 
+\end{align}
+\begin{align}
+R_{20\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & \frac{G M}{x_{1}^{4}} \left(2 G M - x_{1}\right) & 0\\0 & 0 & 0 & 0\\- \frac{G M}{x_{1}} & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right], \\
+R_{21\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & 0 & 0\\0 & 0 & \frac{G M}{x_{1}^{2} \left(- 2 G M + x_{1}\right)} & 0\\0 & - \frac{G M}{x_{1}} & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right], \\
+R_{22\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right], \\
+R_{23\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & \frac{2 G}{x_{1}} M\\0 & 0 & - \frac{2 G}{x_{1}} M \sin^{2}{\left (x_{2} \right )} & 0\end{matrix}\right], 
+\end{align}
+\begin{align}
+R_{30\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & 0 & \frac{G M}{x_{1}^{4}} \left(2 G M - x_{1}\right)\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\\- \frac{G M}{x_{1}} \sin^{2}{\left (x_{2} \right )} & 0 & 0 & 0\end{matrix}\right], \\
+R_{31\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & 0 & 0\\0 & 0 & 0 & \frac{G M}{x_{1}^{2} \left(- 2 G M + x_{1}\right)}\\0 & 0 & 0 & 0\\0 & - \frac{G M}{x_{1}} \sin^{2}{\left (x_{2} \right )} & 0 & 0\end{matrix}\right], \\
+R_{32\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & - \frac{2 G}{x_{1}} M\\0 & 0 & \frac{2 G}{x_{1}} M \sin^{2}{\left (x_{2} \right )} & 0\end{matrix}\right], \\
+R_{33\mu }^{\ \ \ \ \nu } &=\left[\begin{matrix}0 & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right].
+\end{align}
+%Rlllu=[[[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]], [[0, 2*G*M*(2*G*M - x1)/x1**4, 0, 0], [2*G*M/(x1**2*(2*G*M - x1)), 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]], [[0, 0, G*M*(-2*G*M + x1)/x1**4, 0], [0, 0, 0, 0], [G*M/x1, 0, 0, 0], [0, 0, 0, 0]], [[0, 0, 0, G*M*(-2*G*M + x1)/x1**4], [0, 0, 0, 0], [0, 0, 0, 0], [G*M*sin(x2)**2/x1, 0, 0, 0]]], [[[0, 2*G*M*(-2*G*M + x1)/x1**4, 0, 0], [2*G*M/(x1**2*(-2*G*M + x1)), 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]], [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]], [[0, 0, 0, 0], [0, 0, G*M/(x1**2*(2*G*M - x1)), 0], [0, G*M/x1, 0, 0], [0, 0, 0, 0]], [[0, 0, 0, 0], [0, 0, 0, G*M/(x1**2*(2*G*M - x1))], [0, 0, 0, 0], [0, G*M*sin(x2)**2/x1, 0, 0]]], [[[0, 0, G*M*(2*G*M - x1)/x1**4, 0], [0, 0, 0, 0], [-G*M/x1, 0, 0, 0], [0, 0, 0, 0]], [[0, 0, 0, 0], [0, 0, G*M/(x1**2*(-2*G*M + x1)), 0], [0, -G*M/x1, 0, 0], [0, 0, 0, 0]], [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]], [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 2*G*M/x1], [0, 0, -2*G*M*sin(x2)**2/x1, 0]]], [[[0, 0, 0, G*M*(2*G*M - x1)/x1**4], [0, 0, 0, 0], [0, 0, 0, 0], [-G*M*sin(x2)**2/x1, 0, 0, 0]], [[0, 0, 0, 0], [0, 0, 0, G*M/(x1**2*(-2*G*M + x1))], [0, 0, 0, 0], [0, -G*M*sin(x2)**2/x1, 0, 0]], [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, -2*G*M/x1], [0, 0, 2*G*M*sin(x2)**2/x1, 0]], [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]]]
+)
+
+\section{Regge-Wheeler coordinates}
+For $r\ge 2GM$, we define the Regge-Wheeler radius $r^* $ by
+\begin{align}
+r^* \equiv r+2GM\ln{\left( \frac{r}{2GM} -1\right) } .
+\end{align}
+Since the derivative of this radius is 
+\begin{align}
+\mathrm{d} r^* &= \left( 1+\frac{1}{r/\left( 2GM\right) -1} \right) \mathrm{d} r\notag \\
+&= \frac{1}{1-2GM/r } \mathrm{d} r, 
+\end{align}
+with this radius the metric of the Schwarzschild solution (\ref{eq:SchwarzschildMetcic}) becomes 
+\begin{align}
+\mathrm{d} s^2 &=-\left( 1-\frac{2GM}{r} \right) \mathrm{d} t^2 +\left( 1-\frac{2GM}{r} \right) ^{-1} \mathrm{d} r^2 +r^2 \mathrm{d} \theta ^2 +r^2 \sin^2 {\theta } \mathrm{d} \phi ^2 \notag \\
+&=\left( 1-\frac{2GM}{r} \right) \left( -\mathrm{d} t^2 +\mathrm{d} {r^* }^{2} \right) +r^2 \mathrm{d} \theta ^2 +r^2 \sin^2 {\theta } \mathrm{d} \phi ^2 .
+\end{align}
+Besides, with this coordinates the Laplacian becomes 
+\begin{align}
+&\frac{1}{\sqrt{-g} } \partial _{\mu } \left( \sqrt{-g} g^{\mu \nu } \partial _{\nu } \left( \frac{f}{r} \right) \right) \notag \\
+%= &\frac{1}{2 G M - r} \left(\left(1- \frac{2 G M}{r} \right) \left(\frac{2 G M f}{r^{3} } - \frac{1}{r^{2} \sin{\left (\theta \right )}} \frac{\partial }{\partial \theta } \sin{\theta } \frac{\partial }{\partial \theta } f- \frac{\frac{\partial^{2}}{\partial \phi ^{2}}  f}{r^{2} \sin^{2}{\left (\theta \right )}}\right) + \frac{\partial^{2}}{\partial t^{2}}  f - \frac{\partial^{2}}{\partial {r^* }^{2}}  f\right) \notag \\
+= &-\frac{1}{r} \frac{1}{1-2 G M / r} \left(\frac{\partial^{2}}{\partial t^{2}}  f - \frac{\partial^{2}}{\partial {r^* }^{2}} f+\left(1- \frac{2 G M}{r} \right) \left(- \frac{1}{r^{2} \sin{\left (\theta \right )}} \frac{\partial }{\partial \theta } \sin{\theta } \frac{\partial }{\partial \theta } f- \frac{1}{r^{2} \sin^{2}{\left (\theta \right )}} \frac{\partial^{2}}{\partial \phi ^{2}} f+\frac{2 G M }{r^{3} } f\right) \right) 
+\end{align}
+(beware that $r$ and $r^* $ are different).
+
+\begin{thebibliography}{9}
+\bibitem{gravAndEnt} 福間 将文, 酒谷雄峰, 『重力とエントロピー 〜 重力の熱力学的性質を理解するために 〜』（SGCライブラリ90）, サイエンス社 (2014).
+\end{thebibliography}
+
+\end{document}

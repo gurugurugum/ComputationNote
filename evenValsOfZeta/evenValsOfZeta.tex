@@ -1,0 +1,109 @@
+\documentclass[10pt,onecolumn,dvipdfmx]{jsarticle}
+\usepackage{amsmath,amssymb,float,braket,bm,moreverb,mediabb,hyperref,comment}
+\usepackage[dvips]{pict2e}
+
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\diag}{diag}
+
+\DeclareSymbolFont{lettersA}{U}{txmia}{m}{it}
+\DeclareMathSymbol{\F}{\mathord}{lettersA}{'206}
+\DeclareMathSymbol{\N}{\mathord}{lettersA}{'216} 
+\DeclareMathSymbol{\R}{\mathord}{lettersA}{'222} 
+\DeclareMathSymbol{\Z}{\mathord}{lettersA}{'232} 
+\DeclareMathSymbol{\Q}{\mathord}{lettersA}{'221} 
+\DeclareMathSymbol{\C}{\mathord}{lettersA}{'203} 
+
+\newcommand{\divergence}{\mathrm{div}\,} 
+\newcommand{\grad}{\mathrm{grad}\,} 
+\newcommand{\rot}{\mathrm{rot}\,} 
+
+\def\sla#1{\rlap{\kern .15em /}#1}
+
+\newcommand{\diff}[3]{\frac{\mathrm{d} ^{#1} #2}{\mathrm{d} #3^{#1}} }
+\newcommand{\pdiff}[3]{\frac{\partial ^{#1} #2}{\partial #3^{#1}} }
+
+\renewcommand{\thesubsection}{\arabic{subsection})}
+
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\makeatletter
+\@addtoreset{equation}{subsection}
+\makeatother
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}%
+  {1.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+  {.5\Cvs \@plus.3\Cdp}%
+  {\reset@font\normalsize\bfseries}}
+\makeatother
+
+\begin{document}
+
+\title{ゼータ関数の特殊値}
+\author{岡 和磨}
+\date{2016/12/31}
+\maketitle
+
+\begin{align}
+\sin{\left( \pi z\right) } &= \pi z\prod_{n=1} ^{\infty } \left( 1 - \frac{z^2 }{n^2 } \right) 
+\end{align}
+を対数微分し、$z$を乗じると、
+\begin{align}
+\pi z\cot{\left( \pi z\right) } &= 1 - 2\sum_{n=1} ^{\infty } \frac{z^2 / n^2 }{1 - z^2 / n^2 } \notag \\
+&= 1 - 2\sum_{n=1} ^{\infty } \left( \sum_{i=1} ^{\infty } \frac{z^{2i} }{n^{2i} } \right) \notag \\
+&= 1 - 2\sum_{i=1} ^{\infty } \left( \sum_{n=1} ^{\infty } \frac{1}{n^{2i} } \right) z^{2i} &(和の交換に関する考察は付録参照)\notag \\
+&= 1 - 2\sum_{i=1} ^{\infty } \zeta \left( 2i\right) z^{2i} 
+\end{align}
+また、
+\begin{align}
+\pi z\cot{\left( \pi z\right) } &= 1-{\frac{\left( \pi z\right) ^2}{3}}-{\frac{\left( \pi z\right) ^4}{45}}-{\frac{2\,\left( \pi z\right) ^6}{945}}-{\frac{\left( \pi z\right) ^8 }{4725}}-{\frac{2\,\left( \pi z\right) ^{10}}{93555}}+\cdots
+\end{align}
+だから、
+\begin{align}
+\zeta \left(  2\right) &= \frac{\pi ^{ 2} }{    6} \\
+\zeta \left(  4\right) &= \frac{\pi ^{ 4} }{   90} \\
+\zeta \left(  6\right) &= \frac{\pi ^{ 6} }{  945} \\
+\zeta \left(  8\right) &= \frac{\pi ^{ 8} }{ 9450} \\
+\zeta \left( 10\right) &= \frac{\pi ^{10} }{93555} 
+\end{align}
+
+\section*{付録}
+\begin{align}
+\sum_{i=1} ^{N} \left( \frac{z}{n} \right) ^{2i} &= \left( \frac{z}{n} \right) ^{2} \frac{1-\left( z / n\right) ^{2\left( N - 1\right) } }{1 - \left( z / n\right) ^{2} } \\
+\therefore \left| \frac{z^2 / n^2 }{1 - z^2 / n^2 } - \sum_{i=1} ^{N} \left( \frac{z}{n} \right) ^{2i} \right| &= \left| \frac{\left( z / n\right) ^{2N} }{1 - \left( z / n\right) ^{2} } \right| 
+\end{align}
+だから、
+\begin{align}
+N>\sup_{n} \left( \frac{\log{\left( \left| 1 - \left( z / n\right) ^{2} \right| \varepsilon \right) } }{\log{\left| z / n\right| ^{2} } } \right) 
+\end{align}
+としておけば、任意の$n\in \N $に対し、
+\begin{align}
+\left| \frac{z^2 / n^2 }{1 - z^2 / n^2 } - \sum_{i=1} ^{N} \left( \frac{z}{n} \right) ^{2i} \right| < \varepsilon 
+\end{align}
+とできる。（上記の$\sup_{n} $が存在することは、等比級数の収束性よりすべての$n\in \N $に関して
+\begin{align}
+\frac{\log{\left( \left| 1 - \left( z / n\right) ^{2} \right| \varepsilon \right) } }{\log{\left| z / n\right| ^{2} } } 
+\end{align}
+が値を持つこと、及び
+\begin{align}
+\lim_{n\to \infty } \frac{\log{\left( \left| 1 - \left( z / n\right) ^{2} \right| \varepsilon \right) } }{\log{\left| z / n\right| ^{2} } } = -\infty 
+\end{align}
+よりわかる）よって、$N$に対する数列
+\begin{align}
+\sum_{i=1} ^{N} \left( \frac{z}{n} \right) ^{2i} &= \left( \frac{z}{n} \right) ^{2} \frac{1-\left( z / n\right) ^{2\left( N - 1\right) } }{1 - \left( z / n\right) ^{2} } 
+\end{align}
+%\begin{align}
+%\frac{\log{\left( \varepsilon \sqrt{\left( 1-\left( x^2 -y^2 \right) /n^2 \right) ^2 +4x^2 y^2 /n^4 } \right) } }{\log{\left( \left( x^2 +y^2 \right) /n^2 \right) } } 
+%\end{align}
+は$n$に関して一様収束することがわかる。したがって、\cite{doubleSeries}の定理3.1より、極限の順序を交換できて、
+\begin{align}
+\sum_{n=1} ^{\infty } \left( \sum_{i=1} ^{\infty } \frac{z^{2i} }{n^{2i} } \right) &= \sum_{i=1} ^{\infty } \left( \sum_{n=1} ^{\infty } \frac{1}{n^{2i} } \right) z^{2i} 
+\end{align}
+
+
+\begin{thebibliography}{9}
+\bibitem{mathEuler} オイラーの数学から — 『無限解析序説』への招待 (\href{http://www.sci.kobe-u.ac.jp/old/seminar/pdf/noumi2007.pdf}{http://www.sci.kobe-u.ac.jp/old/seminar/pdf/noumi2007.pdf}) アクセス日時:2016年12月31日14時
+\bibitem{maxima} Online Algebra Calculator (\href{http://maxima-online.org/index.html}{http://maxima-online.org/index.html}) アクセス日時:2016年12月31日15時
+\bibitem{doubleSeries} 解 析 学 II (\href{https://www.cis.fukuoka-u.ac.jp/~nyamada/AnalysisII/anII2014.pdf}{https://www.cis.fukuoka-u.ac.jp/~nyamada/AnalysisII/anII2014.pdf}) アクセス日時:2017年1月1日22時
+\end{thebibliography}
+
+\end{document}

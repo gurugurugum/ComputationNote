@@ -1,0 +1,81 @@
+\documentclass[10pt,onecolumn,dvipdfmx]{jsarticle}
+\usepackage{amsmath,amssymb,float,braket,bm,moreverb,mediabb,hyperref}
+\usepackage[dvips]{pict2e}
+
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\diag}{diag}
+
+\DeclareSymbolFont{lettersA}{U}{txmia}{m}{it}
+\DeclareMathSymbol{\F}{\mathord}{lettersA}{'206}
+\DeclareMathSymbol{\N}{\mathord}{lettersA}{'216} 
+\DeclareMathSymbol{\R}{\mathord}{lettersA}{'222} 
+\DeclareMathSymbol{\Z}{\mathord}{lettersA}{'232} 
+\DeclareMathSymbol{\Q}{\mathord}{lettersA}{'221} 
+\DeclareMathSymbol{\C}{\mathord}{lettersA}{'203} 
+
+\newcommand{\divergence}{\mathrm{div}\,} 
+\newcommand{\grad}{\mathrm{grad}\,} 
+\newcommand{\rot}{\mathrm{rot}\,} 
+
+\def\sla#1{\rlap{\kern .15em /}#1}
+
+\newcommand{\diff}[3]{\frac{\mathrm{d} ^{#1} #2}{\mathrm{d} #3^{#1}} }
+\newcommand{\pdiff}[3]{\frac{\partial ^{#1} #2}{\partial #3^{#1}} }
+
+\renewcommand{\thesubsection}{\arabic{subsection})}
+
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\makeatletter
+\@addtoreset{equation}{subsection}
+\makeatother
+
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\z@}%
+  {1.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+  {.5\Cvs \@plus.3\Cdp}%
+  {\reset@font\normalsize\bfseries}}
+\makeatother
+
+\begin{document}
+
+\title{三角関数の無限乗積展開}
+\author{岡 和磨}
+\date{2016/12/31}
+\maketitle
+
+\section{公式}
+\begin{align}
+\sin{\left( \pi z\right) } &= \pi z\prod_{n=1} ^{\infty } \left( 1 - \frac{z^2 }{n^2 } \right) \\
+\cos{\left( \pi z\right) } &= \prod_{n=1} ^{\infty } \left( 1 - \frac{z^2 }{\left( n - 1/2\right) ^2 } \right) \\
+\sinh{\left( \pi z\right) } &= \pi z\prod_{n=1} ^{\infty } \left( 1 + \frac{z^2 }{n^2 } \right) \\
+\cosh{\left( \pi z\right) } &= \prod_{n=1} ^{\infty } \left( 1 + \frac{z^2 }{\left( n - 1/2\right) ^2 } \right) 
+\end{align}
+
+\section{証明}
+\begin{align}
+f\left( z\right) = \frac{\pi z\prod_{n=1} ^{\infty } \left( 1 - \frac{z^2 }{n^2 } \right) }{\sin{\left( \pi z\right) } } 
+\end{align}
+とおく。
+\begin{align}
+\frac{d}{dz} \log{\left( f\left( z\right) \right) } &= \sum_{n=-\infty } ^{\infty } \frac{1}{z + n} - \pi \cot{\left( \pi z\right) } \notag \\
+&= 0\notag \\
+\therefore f\left( z\right) &= f\left( 0\right) =1\notag \\
+\therefore \sin{\left( \pi z\right) } &= \pi z\prod_{n=1} ^{\infty } \left( 1 - \frac{z^2 }{n^2 } \right) 
+\end{align}
+同様に、
+\begin{align}
+g\left( z\right) = \frac{\prod_{n=1} ^{\infty } \left( 1 - \frac{z^2 }{\left( n - 1/2\right) ^2 } \right) }{\cos{\left( \pi z\right) } } 
+\end{align}
+とすると、
+\begin{align}
+\frac{d}{dz} \log{\left( g\left( z\right) \right) } &= \sum_{n=-\infty } ^{\infty } \frac{1}{z + n + 1 / 2} + \pi \tan{\left( \pi z\right) } \notag \\
+&= 0\notag \\
+\therefore g\left( z\right) &= g\left( 0\right) =1\notag \\
+\therefore \cos{\left( \pi z\right) } &= \prod_{n=1} ^{\infty } \left( 1 - \frac{z^2 }{\left( n - 1/2\right) ^2 } \right) 
+\end{align}
+
+\begin{thebibliography}{9}
+\bibitem{wikiInfProdTrigFunc} Wikipedia 三角関数の無限乗積展開 (\href{https://ja.wikipedia.org/wiki/%E4%B8%89%E8%A7%92%E9%96%A2%E6%95%B0%E3%81%AE%E7%84%A1%E9%99%90%E4%B9%97%E7%A9%8D%E5%B1%95%E9%96%8B}{https://ja.wikipedia.org/wiki/三角関数の無限乗積展開}) アクセス日時:2016年12月31日13時
+\end{thebibliography}
+
+\end{document}
